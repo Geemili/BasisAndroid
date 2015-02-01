@@ -41,6 +41,7 @@ class AndroidBuildTool extends basis.BuildTool
 		
 		var appPackage:String = androidTarget.getSetting(AndroidTarget.APP_PACKAGE);
 		var debug:Bool = (androidTarget.getSetting(Target.DEBUG) == "true");
+		var noAnt:Bool = (androidTarget.getSetting(AndroidTarget.NO_ANT) == "true");
 		
 		var mainClass:String = androidTarget.getSetting(Target.MAIN);
 		if(mainClass == "" || mainClass == null)
@@ -158,7 +159,9 @@ class AndroidBuildTool extends basis.BuildTool
 		
 		ProcessUtil.runCommand(targetPath, "haxe", ["build.hxml"]);
 		FileUtil.copyInto(haxePath + "/java/src/", targetPath + "/src/");
-		ProcessUtil.runCommand(targetPath, "ant", ["debug"]);
+		if(!noAnt){
+			ProcessUtil.runCommand(targetPath, "ant", ["debug"]);
+		}
 		
 	}
 }

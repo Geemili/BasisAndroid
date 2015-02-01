@@ -24,6 +24,8 @@ class XmlAndroidSettings extends XmlSettings
 			parseEmulator(settingsXML.node.emulator, currentTarget);
 		if(settingsXML.hasNode.androidAPIVersion)
 			parseAndroidAPIVersion(settingsXML.node.androidAPIVersion, currentTarget);
+		if(settingsXML.hasNode.noAnt)
+			parseNoAnt(settingsXML.node.noAnt, currentTarget);
 			
 		for( dir in settingsXML.nodes.resourceDir )
 			parseResourceDirectories(dir, currentTarget);
@@ -59,6 +61,11 @@ class XmlAndroidSettings extends XmlSettings
 	private function parseResourceDirectories(dir:Fast, currentTarget):Void
 	{
 		currentTarget.addToCollection(AndroidTarget.RESOURCE_DIRECTORIES, dir.att.path);
+	}
+
+	private function parseNoAnt(xml:Fast, currentTarget:Target):Void
+	{
+		currentTarget.setSetting(AndroidTarget.NO_ANT, xml.att.value.toLowerCase());
 	}
 	
 }

@@ -11,6 +11,7 @@ class AndroidTarget extends Target
 	static inline public var APP_PACKAGE:String = "appPackage";
 	static inline public var RESOURCE_DIRECTORIES:String = "resourceDirectories";
 	static inline public var ANDROID_VERSION:String = "androidVersion";
+	static inline public var NO_ANT:String = "noAnt";
 	
 	//Collections
 	static inline public var FRAMEWORKS:String = "frameworks";
