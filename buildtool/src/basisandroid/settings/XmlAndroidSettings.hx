@@ -29,6 +29,9 @@ class XmlAndroidSettings extends XmlSettings
 			
 		for( dir in settingsXML.nodes.resourceDir )
 			parseResourceDirectories(dir, currentTarget);
+
+		for ( permission in settingsXML.nodes.permission )
+			parsePermissions(permission, currentTarget);
 			
 		super.parseSettings(settingsXML, currentTarget);
 	}
@@ -57,15 +60,20 @@ class XmlAndroidSettings extends XmlSettings
 	{
 		currentTarget.setSetting(AndroidTarget.EMULATOR, xml.att.use.toLowerCase());
 	}
+
+	private function parseNoAnt(xml:Fast, currentTarget:Target):Void
+	{
+		currentTarget.setSetting(AndroidTarget.NO_ANT, xml.att.value.toLowerCase());
+	}
 	
 	private function parseResourceDirectories(dir:Fast, currentTarget):Void
 	{
 		currentTarget.addToCollection(AndroidTarget.RESOURCE_DIRECTORIES, dir.att.path);
 	}
 
-	private function parseNoAnt(xml:Fast, currentTarget:Target):Void
+	public function parsePermissions(permission: Fast, currentTarget: Target):Void
 	{
-		currentTarget.setSetting(AndroidTarget.NO_ANT, xml.att.value.toLowerCase());
+		currentTarget.addToCollection(AndroidTarget.PERMISSIONS, permission.att.value);
 	}
 	
 }

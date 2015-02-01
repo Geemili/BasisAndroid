@@ -34,6 +34,7 @@ class AndroidBuildTool extends basis.BuildTool
 		var sourcePaths:Array<String> = androidTarget.getCollection(Target.SOURCE_PATHS, true);
 		var assetPaths:Array<String> = androidTarget.getCollection(Target.ASSET_PATHS, true);
 		var haxeLibs:Array<String> = androidTarget.getCollection(Target.HAXE_LIBS, true);
+		var permissions:Array<String> = androidTarget.getCollection(AndroidTarget.PERMISSIONS);
 		
 		var androidAPIVersion:String = androidTarget.getSetting(AndroidTarget.ANDROID_VERSION);
 		if(androidAPIVersion == null || androidAPIVersion == "")

@@ -15,5 +15,13 @@ class AndroidTarget extends Target
 	
 	//Collections
 	static inline public var FRAMEWORKS:String = "frameworks";
+	static inline public var PERMISSIONS:String = "permissions";
+
+	override public function getSettingsContext(?obj:Dynamic=null):Dynamic
+	{
+		obj = super.getSettingsContext(obj);
+		Reflect.setField(obj, AndroidTarget.PERMISSIONS, getCollection(AndroidTarget.PERMISSIONS));
+		return obj;
+	}
 	
 }
